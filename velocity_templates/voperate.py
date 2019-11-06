@@ -1,163 +1,191 @@
+#### NBODYKIT functions that are used to produce 3D fields.
+#### contact: selim.hotinli14@imperial.ac.uk
+##### Project the field onto a healpix map: 'maps_field'.
+##### -- Counts the total number of mesh points that
+#####    contributed to that pixel.
+##### -- TODO: Do the integral over the redshift bin better
+def get_t(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	# debugging
+	x_ = x0*1.+y0*0.+z0*0.
+	y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	tot_l = len(r)*len(r)
+	r = r.reshape(tot_l)
+	p = p.reshape(tot_l)
+	t = t.reshape(tot_l)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	pixels = hp.pixelfunc.vec2pix(NSIDE, x_, y_, z_)
+	pixels = pixels.reshape(tot_l)
+	values = v.reshape(tot_l)
+	inds = np.digitize(r, chi_bins[:-1])
+	for ii in range(0,len(pixels)):
+		maps_field[inds[ii]-1][pixels[ii]] += values[ii]
+		maps_count[inds[ii]-1][pixels[ii]] += 1
+	return v
 
+# Needs cosmology defined from nbodykit, e.g. cosmo=cosmology.Planck15
+def z_from_comoving_distance(x,zmax=zmax):
+	zgrid = numpy.logspace(-8, 20, 1024)
+	zgrid = numpy.concatenate([[0.], zgrid])
+	rgrid = cosmo.comoving_distance(zgrid)
+  return scipy.interpolate.interp1d(rgrid, zgrid)(x)
 
+# this function takes the density field in fourier space and multiplies with 1/k
+def get_x(x, v): return x[0] # get x on the mesh by
+def get_y(x, v): return x[1] # get x on the mesh by
+def get_z(x, v): return x[2] # get x on the mesh by
 
-<!DOCTYPE HTML>
-<html>
+# this function takes the density field in fourier space and multiplies with 1/k
+def get_vp(k, v):
+	kk = sum(ki ** 2 for ki in k) # k^2 on the mesh
+	kk[kk == 0] = 1
+	return v / np.sqrt(kk) # divide the mesh by k
 
-<head>
-    <meta charset="utf-8">
+def get_vx(k, v):
+	return 1j * k[0] / k.normp(zeromode=1) ** 0.5 * v
 
-    <title>JupyterHub</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+def get_vy(k, v):
+	return 1j * k[1] / k.normp(zeromode=1) ** 0.5 * v
 
-    
-    <link rel="stylesheet" href="/hub/static/css/style.min.css?v=883a1cf654bd9f5cdc5ca7c91efe7d71" type="text/css"/>
-    
-    <script src="/hub/static/components/requirejs/require.js?v=f0cc8bbb2fcef87fc194fecbb632fcfa" type="text/javascript" charset="utf-8"></script>
-    <script src="/hub/static/components/jquery/dist/jquery.min.js?v=a09e13ee94d51c524b7e2a728c7d4039" type="text/javascript" charset="utf-8"></script>
-    <script src="/hub/static/components/bootstrap/dist/js/bootstrap.min.js?v=2f34b630ffe30ba2ff2b91e3f3c322a1" type="text/javascript" charset="utf-8"></script>
-    <script>
-      require.config({
-          
-          urlArgs: "v=20191001085403",
-          
-          baseUrl: '/hub/static/js',
-          paths: {
-            components: '../components',
-            jquery: '../components/jquery/dist/jquery.min',
-            bootstrap: '../components/bootstrap/dist/js/bootstrap.min',
-            moment: "../components/moment/moment",
-          },
-          shim: {
-            bootstrap: {
-              deps: ["jquery"],
-              exports: "bootstrap"
-            },
-          }
-      });
-    </script>
+def get_vz(k, v):
+	return 1j * k[2] / k.normp(zeromode=1) ** 0.5 * v
 
-    <script type="text/javascript">
-      window.jhdata = {
-        base_url: "/hub/",
-        prefix: "/",
-        
-        
-        admin_access: false,
-        
-        
-        options_form: false,
-        
-      }
-    </script>
+# this function takes the field (overdensity + 1) in real space and multiplies with aHf
+def get_overdensity(x, v):
+	return (v-1.)
 
-    
-    
+# this function takes the field in real space and multiplies with aHf
+def get_coefficent(x, v):
+	x0 = x[0]; y0 = x[1]; z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	tot_l = len(r)*len(r)
+	rn = r.reshape(tot_l)
+	values = v.reshape(tot_l)
+	redshift = zofchi(rn)
+	f = cosmo.scale_independent_growth_rate(redshift)
+	ah = (100.*cosmo.efunc(redshift))/(1.+redshift)
+	faH = (f * ah).reshape(len(r),len(r))
+	return v*faH
 
-</head>
+# v_r = sin(theta)*cos(phi)*v_x + sin(theta)*sin(phi)*v_y + cos(theta)*v_z
+def get_v_r_vx(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	# debugging
+	x_ = x0*1.+y0*0.+z0*0.
+  y_ = x0*0.+y0*0.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return v * np.sin(t) * np.cos(p)
 
-<body>
+def get_v_r_vy(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	x_ = x0*1.+y0*0.+z0*0.
+  y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return v * np.sin(t) * np.sin(p)
 
-<noscript>
-  <div id='noscript'>
-    JupyterHub requires JavaScript.<br>
-    Please enable it to proceed.
-  </div>
-</noscript>
+def get_v_r_vz(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	x_ = x0*1.+y0*0.+z0*0.
+	y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return - v * np.cos(t)
 
+# v_theta = cos(theta)*cos(phi)*v_x + cos(theta)*sin(phi)*v_y - sin(theta)*v_z
+def get_v_theta_vx(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	x_ = x0*1.+y0*0.+z0*0.
+	y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return v * np.cos(t) * np.cos(p)
 
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <span id="jupyterhub-logo" class="pull-left"><a href="/hub/"><img src='/hub/logo' alt='JupyterHub' class='jpy-logo' title='Home'/></a></span>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#thenavbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
+def get_v_theta_vy(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	x_ = x0*1.+y0*0.+z0*0.
+  y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return v * np.cos(t) * np.sin(p)
 
-      <div class="collapse navbar-collapse" id="thenavbar">
-        
-        <ul class="nav navbar-nav navbar-right">
-          
-            <li>
-              
+def get_v_theta_vz(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	x_ = x0*1.+y0*0.+z0*0.
+  y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return - v * np.sin(t)
 
-            </li>
-          
-        </ul>
-      </div>
+# v_phi = -sin(theta)*v_x + cos(phi)*v_y
+def get_v_phi_vx(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	x_ = x0*1.+y0*0.+z0*0.
+	y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return - v * np.sin(p)
 
-      
-      
-    </div>
-  </nav>
-
-
-
-
-
-
-
-
-
-
-
-<div id="login-main" class="container">
-
-<div class="service-login">
-  <a role="button" class='btn btn-jupyter btn-lg' href='/hub/saml2_auth/login?next=%2Fhub%2Fapi%2Foauth2%2Fauthorize%3Fclient_id%3Djupyterhub-user-sch14%26redirect_uri%3D%252Fuser%252Fsch14%252Foauth_callback%26response_type%3Dcode%26state%3DeyJ1dWlkIjogIjE3ZmZkNWVkZWMzNDQ3ZGFiZTRmNTJkN2FiNTgxMWUwIiwgIm5leHRfdXJsIjogIi91c2VyL3NjaDE0L2ZpbGVzL3ZvcGVyYXRlLnB5In0'>
-    Sign in with college ID
-  </a>
-</div>
-
-</div>
-
-
-
-
-
-
-
-<div class="modal fade" id="error-dialog" tabindex="-1" role="dialog" aria-labelledby="error-label" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="error-label">Error</h4>
-      </div>
-      <div class="modal-body">
-        
-  <div class="ajax-error">
-    The error
-  </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" data-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<script>
-if (window.location.protocol === "http:") {
-  // unhide http warning
-  var warning = document.getElementById('insecure-login-warning');
-  warning.className = warning.className.replace(/\bhidden\b/, '');
-}
-</script>
-
-
-
-</body>
-
-</html>
+def get_v_phi_vy(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	x_ = x0*1.+y0*0.+z0*0.
+  y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	return v * np.cos(p)
