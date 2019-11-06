@@ -30,7 +30,7 @@ Requires:
 Requires: 
 `healpix`
 
-4) spherical harmonic reconstruction of the transverse velocities
+4) spherical harmonic reconstruction of the transverse velocities:  https://github.com/jbmertens/websky_post (work on progress)
 
 Requires: 
 `healpix`
