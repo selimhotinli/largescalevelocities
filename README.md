@@ -12,7 +12,7 @@ tools include: (work on progress)
 - makes z-binned healpix maps out of 3D velocities
 
 Requires: 
-`healpix`
+`healpy`
 `nbodykit`
 
 2) stacking algoritm for moving lens effect
@@ -22,16 +22,16 @@ Requires:
  - stacks the grids to extract the signal. 
 
 Requires: 
-`healpix`
+`healpy`
 
 3) moving lens effect map maker: https://github.com/jbmertens/websky_post
  - uses halo catalog to paint maps of the moving-lens effect.
 
 Requires: 
-`healpix`
+`healpy`
 
 4) spherical harmonic reconstruction of the transverse velocities:  https://github.com/jbmertens/websky_post (work on progress)
 
 Requires: 
-`healpix`
+`healpy`
 
