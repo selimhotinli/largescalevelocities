@@ -5,8 +5,8 @@ tools for reconstructing and using large-scale velocity modes
 this rep includes various tools and pipelines for reconstruction large-scale velocities from maps of cosmic microwave background (CMB) and galaxy-surveys. 
 
 Requires: 
-`healpix'
-`nbodykit'
+`healpix`
+`nbodykit`
 
 tools include: (work on progress)
 
