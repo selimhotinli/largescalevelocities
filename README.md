@@ -6,10 +6,10 @@ this rep includes various tools and pipelines for reconstruction large-scale vel
 
 tools include: (work on progress)
 
-1) velocity map reconstruction from halo catalogs
+1) 3D velocity reconstruction from halo catalogs
 - uses galaxy catalog to compute 3D overdensity field. 
 - uses the 3D overdensity field to compute 3D velocity 3-vector. 
-- makes z-binned healpix maps out of 3D velocities
+- makes *redshift-binned healpix maps* out of 3D velocities
 
 Requires: 
 `healpy`
