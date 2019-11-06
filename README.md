@@ -24,7 +24,7 @@ Requires:
 Requires: 
 `healpix`
 
-3) moving lens effect map maker
+3) moving lens effect map maker: https://github.com/jbmertens/websky_post
  - uses halo catalog to paint maps of the moving-lens effect.
 
 Requires: 
