@@ -13,7 +13,7 @@ tools include: (work on progress)
 1) velocity map reconstruction from galaxy catalogs
 - uses galaxy catalog to compute 3D overdensity field. 
 - uses the 3D overdensity field to compute 3D velocity 3-vector. 
-- makes healpix maps out of 3D velocities
+- makes z-binned healpix maps out of 3D velocities
 
 2) stacking algoritm for moving lens effect
  - uses halo distributions and CMB maps (with moving lens effect).
