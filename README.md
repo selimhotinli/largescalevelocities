@@ -27,7 +27,13 @@ Requires:
 
 Moving lens signal is a dipolar modulation in the CMB, alighed with the peculiar velocities of gravitational potentials, e.g. arxiv:1812.03167 
 
-<img src="http://latex.codecogs.com/svg.latex?\Delta\Theta (\hat{\mathbf{n}}) = \mathbf{v}_\perp \cdot \boldsymbol{\beta}(\chi \hat{\mathbf{n}})" border="0"/> 
+<img src="http://latex.codecogs.com/svg.latex?\Delta\Theta (\hat{\mathbf{n}}) = \mathbf{v}_\perp \cdot \boldsymbol{\beta}(\chi \hat{\mathbf{n}})" border="0"/>
+
+where 
+
+<img src="http://latex.codecogs.com/svg.latex?\beta=\int\textnormal{d}\chi\frac{1}{\chi}\nabla\Phi\,," border="0"/>
+
+similar to the lensing deflection angle. (See more notes at the stacker folder.) 
 
 Requires: 
 `healpy`
