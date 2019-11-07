@@ -22,8 +22,12 @@ Requires:
 2) stacking algoritm for **moving lens effect**
  - uses halo distributions and CMB maps (with moving lens effect).
  - orients CMB patches to be aligned with the velocity field template. 
- - fits a grid with fixed size in x=x/r_s where r_s is the scale radius.
+ - fits a grid with fixed size in <img src="http://latex.codecogs.com/svg.latex?x=x/r_s" border="0"/> where <img src="http://latex.codecogs.com/svg.latex?r_s" border="0"/> is the scale radius. (See related stacker description.)
  - stacks the grids to extract the signal. 
+
+Moving lens signal is a dipolar modulation in the CMB, alighed with the peculiar velocities of gravitational potentials, e.g. arxiv:1812.03167 
+
+<img src="http://latex.codecogs.com/svg.latex?\Delta\Theta (\hat{\mathbf{n}}) = \mathbf{v}_\perp \cdot \boldsymbol{\beta}(\chi \hat{\mathbf{n}})" border="0"/> 
 
 Requires: 
 `healpy`
