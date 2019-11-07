@@ -1,35 +1,10 @@
-#### NBODYKIT functions that are used to produce 3D fields.
+#### nbodykit functions that are to be used to produce 3D fields.
+#### code under development
 #### contact: selim.hotinli14@imperial.ac.uk
 ##### Project the field onto a healpix map: 'maps_field'.
 ##### -- Counts the total number of mesh points that
 #####    contributed to that pixel.
 ##### -- TODO: Do the integral over the redshift bin better
-def get_t(x, v):
-	x0 = x[0] + 1e-11
-	y0 = x[1]
-	z0 = x[2]
-	r = np.sqrt(x0**2.+y0**2.+z0**2.)
-	# debugging
-	x_ = x0*1.+y0*0.+z0*0.
-	y_ = x0*0.+y0*1.+z0*0.
-	z_ = x0*0.+y0*0.+z0*1.
-	p = np.arctan(y_/x_)
-	t = np.arccos(z_/r)
-	tot_l = len(r)*len(r)
-	r = r.reshape(tot_l)
-	p = p.reshape(tot_l)
-	t = t.reshape(tot_l)
-	if x0[0,0] > 0:
-		p = np.pi - p
-	pixels = hp.pixelfunc.vec2pix(NSIDE, x_, y_, z_)
-	pixels = pixels.reshape(tot_l)
-	values = v.reshape(tot_l)
-	inds = np.digitize(r, chi_bins[:-1])
-	for ii in range(0,len(pixels)):
-		maps_field[inds[ii]-1][pixels[ii]] += values[ii]
-		maps_count[inds[ii]-1][pixels[ii]] += 1
-	return v
-
 # Needs cosmology defined from nbodykit, e.g. cosmo=cosmology.Planck15
 def z_from_comoving_distance(x,zmax=zmax):
 	zgrid = numpy.logspace(-8, 20, 1024)
@@ -189,3 +164,30 @@ def get_v_phi_vy(x, v):
 	if x0[0,0] > 0:
 		p = np.pi - p
 	return v * np.cos(p)
+
+def get_t(x, v):
+	x0 = x[0] + 1e-11
+	y0 = x[1]
+	z0 = x[2]
+	r = np.sqrt(x0**2.+y0**2.+z0**2.)
+	# debugging
+	x_ = x0*1.+y0*0.+z0*0.
+	y_ = x0*0.+y0*1.+z0*0.
+	z_ = x0*0.+y0*0.+z0*1.
+	p = np.arctan(y_/x_)
+	t = np.arccos(z_/r)
+	tot_l = len(r)*len(r)
+	r = r.reshape(tot_l)
+	p = p.reshape(tot_l)
+	t = t.reshape(tot_l)
+	if x0[0,0] > 0:
+		p = np.pi - p
+	pixels = hp.pixelfunc.vec2pix(NSIDE, x_, y_, z_)
+	pixels = pixels.reshape(tot_l)
+	values = v.reshape(tot_l)
+	inds = np.digitize(r, chi_bins[:-1])
+	for ii in range(0,len(pixels)):
+		maps_field[inds[ii]-1][pixels[ii]] += values[ii]
+		maps_count[inds[ii]-1][pixels[ii]] += 1
+	return v
+
