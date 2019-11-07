@@ -2,9 +2,11 @@
 
 email: selim.hotinli14@imperial.ac.uk 
 
-tools for reconstructing and using large-scale velocity modes
+Building tools for reconstructing and using large-scale velocity modes
 
-this rep includes various tools and pipelines for reconstruction large-scale velocities from maps of cosmic microwave background (CMB) and galaxy-surveys. 
+Reconstructed modes are very valuable for cosmological inference as their reconstruction noise scales like  <img src="http://latex.codecogs.com/svg.latex?k^2" border="0"/> and provide better signal-to-noise on largest scales. This makes velocity modes very useful for sample-variance cancellation. 
+
+This rep includes various tools and pipelines for reconstruction large-scale velocities from maps of cosmic microwave background (CMB) and galaxy-surveys. 
 
 tools include: (work on progress)
 
