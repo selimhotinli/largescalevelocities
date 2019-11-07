@@ -74,6 +74,6 @@ Getting a SNR will depend on the correlation coefficient between the template ve
 
 The pipeline (*under development*) related to producing 3D velocity fields from halo catalogues serves this purpose. 
 
-`The python script here` serves to select a patch of a CMB map centred at a halo in the sky, and align it with the tranvserve velocity.
+an improved version of `oriented_stacker.py` here will serve to select a patch of a CMB map centred at a halo in the sky, and align it with the transverse velocity.
 
 
