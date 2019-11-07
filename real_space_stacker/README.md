@@ -16,4 +16,4 @@ where <img src="http://latex.codecogs.com/svg.latex?\chi" border="0"/> is the co
 
 <img src="http://latex.codecogs.com/svg.latex?{\dot{\Phi}(\chi\hat{\mathbf{n}})}=\mathbf{v}\cdot\nabla\Phi\,." border="0"/>
 
-Assuming spherical symmetry, we can write <img src="http://latex.codecogs.com/svg.latex?\boldsymbol{\nabla}\Phi=\rhat\!~\Phi'" border="0"/> (where <img src="http://latex.codecogs.com/svg.latex?\Phi'=\partial\Phi/\partial r" border="0"/>).
+Assuming spherical symmetry, we can write <img src="http://latex.codecogs.com/svg.latex?\boldsymbol{\nabla}\Phi=\hat{\mathbf{r}}\!~\Phi'" border="0"/> (where <img src="http://latex.codecogs.com/svg.latex?\Phi'=\partial\Phi/\partial r" border="0"/>).
