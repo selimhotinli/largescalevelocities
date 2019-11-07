@@ -62,5 +62,9 @@ such that the moving lens signal from a halo takes the form <img src="http://lat
 
 and the radial dependence is found to be 
 
-<img src="http://latex.codecogs.com/svg.latex?\tau(x):=\frac{1}{2x}\left[\Big|\frac{2\mathrm{arcsec(x)}}{\sqrt{x^2-1}}\Big|+\ln\left(\frac{x^2}{4}\right)\right]\,." border="0"/> 
+<img src="http://latex.codecogs.com/svg.latex?\tau(x):=\frac{1}{2x}\left[\Big|\frac{2\mathrm{arcsec(x)}}{\sqrt{x^2-1}}\Big|+\ln\left(\frac{x^2}{4}\right)\right]\,." border="0"/>           (1)
+
+## Real-space stacking and the detection SNR
+
+Following from our calculations above, we can note that the moving lens effect is a very particular pattern (1) aligned with the transverse velocity of the halos. An efficient method to bring the moving lens signal to surface that stacks the CMB patches benefits from well-approximating the velocities the large scale velocities (so 
 
