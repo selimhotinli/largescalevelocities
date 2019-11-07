@@ -143,22 +143,18 @@ for bin_num in range(len(chi_bins)-1) :
 	i2_y = vtans_y/vtans_r
 	i2_z = vtans_z/vtans_r
 	i2_v = np.transpose([i2_x,i2_y,i2_z])
-		
 	i3_x = yhat * i2_z - zhat * i2_y
 	i3_y = zhat * i2_x - xhat * i2_z
 	i3_z = xhat * i2_y - yhat * i2_x
 	i3_v = np.transpose([i3_x,i3_y,i3_z])
-		
 	i1_v_p = np.array([1.,0.,0.])
 	i2_v_p = np.array([0.,1.,0.])
 	i3_v_p = np.array([0.,0.,1.])
-		
 	mTR = np.empty((len(i3_v),3,3),dtype=float)
-		
 	for ii in range(0,len(i3_v)):
 		mTR[ii] = np.array([[np.dot(i1_v_p,i1_v[ii]),np.dot(i1_v_p,i2_v[ii]),np.dot(i1_v_p,i3_v[ii])],
-												[np.dot(i2_v_p,i1_v[ii]),np.dot(i2_v_p,i2_v[ii]),np.dot(i2_v_p,i3_v[ii])],
-												[np.dot(i3_v_p,i1_v[ii]),np.dot(i3_v_p,i2_v[ii]),np.dot(i3_v_p,i3_v[ii])]])
+				    [np.dot(i2_v_p,i1_v[ii]),np.dot(i2_v_p,i2_v[ii]),np.dot(i2_v_p,i3_v[ii])],
+				    [np.dot(i3_v_p,i1_v[ii]),np.dot(i3_v_p,i2_v[ii]),np.dot(i3_v_p,i3_v[ii])]])
 	# if the radii are given as comoving distance then this amounts to comoving angular distance?
 	theta_comov = srad_over_chi*4.
 	ang_res_NSIDE = hp.pixelfunc.nside2resol(NSIDE) #
