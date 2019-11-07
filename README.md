@@ -1,4 +1,4 @@
-# largescalevelocities
+# large scale velocities (under development)
 
 tools for reconstructing and using large-scale velocity modes
 
