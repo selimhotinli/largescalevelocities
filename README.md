@@ -17,7 +17,7 @@ Requires:
 `healpy`
 `nbodykit`
 
-2) stacking algoritm for moving lens effect
+2) stacking algoritm for **moving lens effect**
  - uses halo distributions and CMB maps (with moving lens effect).
  - orients CMB patches to be aligned with the velocity field template. 
  - fits a grid with fixed size in x=x/r_s where r_s is the scale radius.
