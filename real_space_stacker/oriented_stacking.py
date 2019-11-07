@@ -50,8 +50,8 @@ for bin_num in range(len(chi_bins)-1) :
 	print("...done.")
 	cutCat = np.arange(0,len(catalog))
 	cutCat = cutCat[(bin_lower_chi<chi_) & (chi_<bin_upper_chi)]		
-  NSIDE = 4096
-  NPIX = 12*NSIDE**2
+	NSIDE = 4096
+	NPIX = 12*NSIDE**2
 	rho_m_0 = 2.775e11*omegam*h**2 # Msun/Mpc^3
 	################## halo locations in Mpc (comoving) coordinates ##################
 	x = reduced_catalog[:,0]
@@ -70,7 +70,7 @@ for bin_num in range(len(chi_bins)-1) :
 	M        = 4*np.pi/3.*rho_m_0*R**3    # Msun
 	vrad     = (x*vx + y*vy + z*vz) / chi # km/sec
 	redshift = zofchi(chi)
-  # Below is a useful quantity: scale radious 'srad' as defined in the literature.
+	# Below is a useful quantity: scale radious 'srad' as defined in the literature.
 	## halo-model dependent constants, can be found in literature ##
 	Ac = 7.85
 	alphac = -0.081
@@ -108,8 +108,8 @@ for bin_num in range(len(chi_bins)-1) :
 	xhat = x/chi;
 	yhat = y/chi;
 	zhat = z/chi # unit distance vectors
-  v_rad = np.sqrt(vx**2.+vy**2.+vz**2.) # velocity amplitude of all halos (km / s)
-  vtheta = ( np.cos(theta)*np.cos(phi)*vx + np.cos(theta)*np.sin(phi)*vy - np.sin(theta)*vz )
+	v_rad = np.sqrt(vx**2.+vy**2.+vz**2.) # velocity amplitude of all halos (km / s)
+	vtheta = ( np.cos(theta)*np.cos(phi)*vx + np.cos(theta)*np.sin(phi)*vy - np.sin(theta)*vz )
 	vphi   = (-np.sin(phi)*vx + np.cos(phi)*vy )
 	thetahat = np.array([np.cos(theta)*np.cos(phi),np.cos(theta)*np.sin(phi), - np.sin(theta)])
 	phihat   = np.array([ -np.sin(phi),np.cos(phi),0.*phi])
@@ -119,7 +119,7 @@ for bin_num in range(len(chi_bins)-1) :
 	vtans_y = vtrans_[1,:]
 	vtans_z = vtrans_[2,:]
 	vtans_r = np.sqrt(vtans_x**2.+vtans_y**2.+vtans_z**2.)
-  ############# the transformation matrix #############
+	############# the transformation matrix #############
 	#
 	#      i_1 = r
 	#      i_2 = v_t
@@ -156,13 +156,12 @@ for bin_num in range(len(chi_bins)-1) :
 		mTR[ii] = np.array([[np.dot(i1_v_p,i1_v[ii]),np.dot(i1_v_p,i2_v[ii]),np.dot(i1_v_p,i3_v[ii])],
 												[np.dot(i2_v_p,i1_v[ii]),np.dot(i2_v_p,i2_v[ii]),np.dot(i2_v_p,i3_v[ii])],
 												[np.dot(i3_v_p,i1_v[ii]),np.dot(i3_v_p,i2_v[ii]),np.dot(i3_v_p,i3_v[ii])]])
-
-  # if the radii are given as comoving distance then this amounts to comoving angular distance?
-  theta_comov = srad_over_chi*4.
-  ang_res_NSIDE = hp.pixelfunc.nside2resol(NSIDE) #
+	# if the radii are given as comoving distance then this amounts to comoving angular distance?
+	theta_comov = srad_over_chi*4.
+	ang_res_NSIDE = hp.pixelfunc.nside2resol(NSIDE) #
 	SO_res_1p4amn = 1.4/3437.75
 	npixelsSO = theta_comov/SO_res_1p4amn
-  npixels4K = theta_comov/ang_res_NSIDE
+	npixels4K = theta_comov/ang_res_NSIDE
 	cmb_map  = hp.read_map('/path/to/CMB/map')
 	movl_map = hp.read_map('/path/to/moving-lens/map')
 	print("read the maps")
@@ -173,8 +172,7 @@ for bin_num in range(len(chi_bins)-1) :
 	#			cth_cmb = np.loadtxt('/path/to/CMB/correlation-function')
 	#			cth_mov = np.loadtxt('/path/to/moving-lens/correlation-function')
 	#			cth_tot = np.loadtxt('/path/to/total CMB (inc. moving lens)/correlation-function')
-	
-  ### correlation functions if needed (currently disabled) ###
+	### correlation functions if needed (currently disabled) ###
 	# 		mu = np.linspace(0.5,1,100000)
 	#     th = np.arccos(mu)
 	#     corr_cmb = interpolate.interp1d(th, cth_cmb)
@@ -194,63 +192,63 @@ for bin_num in range(len(chi_bins)-1) :
 	facsS4 = fwhmS4**2
 	facdS4 = deltS4**2
 	TCMB = 2.725 # in Kelvin
-  muK2 = (TCMB*1e6)**2
-  # idealized CMB noise
+	muK2 = (TCMB*1e6)**2
+	# idealized CMB noise
 	NTT   = facd*np.exp(fac2 * facs) #* (TCMB*1e6)**2 # in [mK]^2
 	NTTS4 = facdS4*np.exp(fac2 * facsS4) #* (TCMB*1e6)**2 # in [mK]^2
 	
-		# Now, we wish to create a template on-to which we will *map* our CMB patch.
-		# This is a template in dimensionless units 'x' as described in the notes,
-		# as well as above. We should decide what range of 'x' we should consider
-		# as the signal profile is largely captured by around x=2.
+	# Now, we wish to create a template on-to which we will *map* our CMB patch.
+	# This is a template in dimensionless units 'x' as described in the notes,
+	# as well as above. We should decide what range of 'x' we should consider
+	# as the signal profile is largely captured by around x=2.
 		
-		# Choice of grid-size and binning is arbitrary
-		x_h = np.linspace(-3., 3., 11,dtype=float)
-		y_h = np.linspace(-3., 3., 11,dtype=float)
-		xv, yv = np.meshgrid(x_h, y_h)		
-		xvv = np.reshape(xv, len(xv)*len(xv[0]))
-		yvv = np.reshape(yv, len(yv)*len(yv[0]))		
-		indvv = range(0,len(xvv))
-		leni = len(indvv)		
-		numindices = np.array([])
-		cmb_map  = unl_cmb_map_4K_f1p4
-		mov_map  = movl_map*np.sqrt(muK2)
-		tot_map  = mov_map + cmb_map
-		stack_s = len(catalog)
-		##########
-		grid_data  = np.zeros((3,leni),dtype=float)
-		##########
-	  lentmp = len(xvv)
-		counter = 0
-		resol = hp.nside2resol(NSIDE)
-		iselect = np.array([])
-		datacmb = open('/path/to/output/grid/per/redshift/bin/'+('%03d' % int(argv[1]))+'.txt', 'w')
-		datamov = open('/path/to/output/grid/per/redshift/bin/'+('%03d' % int(argv[1]))+'.txt', 'w')
-		datatot = open('/path/to/output/grid/per/redshift/bin/'+('%03d' % int(argv[1]))+'.txt', 'w')
-		for index, ii in enumerate(cutCat):
-			########################################
-			# OK SO HERE: We are rescaling our *grid* to fit well onto
-			# ----------  the (expected) shape of the moving-lens effect.
-			# ----------  Below are theta and phi-directed template coordinates.
-			########################################
-			x_t =  yvv/xfactors[index]+np.pi/2.
-			x_p = -xvv/xfactors[index]
-			# get the (x,y,z) vector corresponding to the *template* coordinates
-			vec = hp.ang2vec(x_t,x_p)
-			x_ = vec[:,0]; y_ = vec[:,1]; z_ = vec[:,2]
-			iselect = np.append(iselect,index)
-      patch = np.empty((len(y_),3),dtype=float)
-      for jj in range(0,len(x_)):
-				patch[jj] = hp.rotator.rotateVector(mTR[index],x_[jj],vy=y_[jj],vz=z_[jj],do_rot=True)
-				newp = hp.vec2pix(NSIDE,patch[:,0],patch[:,1],patch[:,2])
-				grid_data[0] += tot_map[newp] - tot_map[60]
-				grid_data[1] += cmb_map[newp] - cmb_map[60]
-				grid_data[2] += mov_map[newp] - mov_map[60]
-				if(np.mod(counter,500)==0): print("counter = ", counter)
-				counter = counter + 1
-  np.savetxt(datacmb, grid_data[1] , delimiter=',', newline="\n")
-	np.savetxt(datamov, grid_data[2] , delimiter=',', newline="\n")
-	np.savetxt(datatot, grid_data[0] , delimiter=',', newline="\n")
-datacmb.close()
-datamov.close()
-datatot.close()
+	# Choice of grid-size and binning is arbitrary
+	x_h = np.linspace(-3., 3., 11,dtype=float)
+	y_h = np.linspace(-3., 3., 11,dtype=float)
+	xv, yv = np.meshgrid(x_h, y_h)		
+	xvv = np.reshape(xv, len(xv)*len(xv[0]))
+	yvv = np.reshape(yv, len(yv)*len(yv[0]))		
+	indvv = range(0,len(xvv))
+	leni = len(indvv)		
+	numindices = np.array([])
+	cmb_map  = unl_cmb_map_4K_f1p4
+	mov_map  = movl_map*np.sqrt(muK2)
+	tot_map  = mov_map + cmb_map
+	stack_s = len(catalog)
+	##########
+	grid_data  = np.zeros((3,leni),dtype=float)
+	##########
+	lentmp = len(xvv)
+	counter = 0
+	resol = hp.nside2resol(NSIDE)
+	iselect = np.array([])
+	datacmb = open('/path/to/output/grid/per/redshift/bin/'+('%03d' % int(argv[1]))+'.txt', 'w')
+	datamov = open('/path/to/output/grid/per/redshift/bin/'+('%03d' % int(argv[1]))+'.txt', 'w')
+	datatot = open('/path/to/output/grid/per/redshift/bin/'+('%03d' % int(argv[1]))+'.txt', 'w')
+	for index, ii in enumerate(cutCat):
+	########################################
+	# OK SO HERE: We are rescaling our *grid* to fit well onto
+	# ----------  the (expected) shape of the moving-lens effect.
+	# ----------  Below are theta and phi-directed template coordinates.
+	########################################
+		x_t =  yvv/xfactors[index]+np.pi/2.
+		x_p = -xvv/xfactors[index]
+		# get the (x,y,z) vector corresponding to the *template* coordinates
+		vec = hp.ang2vec(x_t,x_p)
+		x_ = vec[:,0]; y_ = vec[:,1]; z_ = vec[:,2]
+		iselect = np.append(iselect,index)
+		patch = np.empty((len(y_),3),dtype=float)
+		for jj in range(0,len(x_)):
+			patch[jj] = hp.rotator.rotateVector(mTR[index],x_[jj],vy=y_[jj],vz=z_[jj],do_rot=True)
+			newp = hp.vec2pix(NSIDE,patch[:,0],patch[:,1],patch[:,2])
+			grid_data[0] += tot_map[newp] - tot_map[60]
+			grid_data[1] += cmb_map[newp] - cmb_map[60]
+			grid_data[2] += mov_map[newp] - mov_map[60]
+			if(np.mod(counter,500)==0): print("counter = ", counter)
+			counter = counter + 1
+		np.savetxt(datacmb, grid_data[1] , delimiter=',', newline="\n")
+		np.savetxt(datamov, grid_data[2] , delimiter=',', newline="\n")
+		np.savetxt(datatot, grid_data[0] , delimiter=',', newline="\n")
+	datacmb.close()
+	datamov.close()
+	datatot.close()
