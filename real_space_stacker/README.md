@@ -1,5 +1,9 @@
 # The moving lens effect
 
+notes by selim.hotinli14@imperial.ac.uk
+
+## The shape of the signal:
+
 A gravitational potential moving with velocity <img src="http://latex.codecogs.com/svg.latex?\mathbf{v}_\perp" border="0"/> transverse to our line-of-sight direction <img src="http://latex.codecogs.com/svg.latex?\hat{\mathbf{n}}" border="0"/> leads to CMB temperature fluctuations given (at lowest order) by 
 
 <img src="http://latex.codecogs.com/svg.latex?\Delta\Theta (\hat{\mathbf{n}}) = \mathbf{v}_\perp \cdot \boldsymbol{\beta}(\chi \hat{\mathbf{n}})" border="0"/> 
