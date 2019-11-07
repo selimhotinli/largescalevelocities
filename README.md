@@ -44,6 +44,8 @@ Requires:
 Requires: 
 `healpy`
 
+see also related work by Siavash Yasini https://github.com/syasini/AstroPaint
+
 4) spherical harmonic reconstruction of the transverse velocities:  https://github.com/jbmertens/websky_post (work on progress)
 
 Requires: 
