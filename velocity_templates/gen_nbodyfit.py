@@ -83,18 +83,19 @@ M        = 4*np.pi/3.*rho_m_0*R**3    # Msun
 lencat = len(catalog)
 cosmo = cosmology.Planck15
 # Generate a NBODYKIT catalog from the data
-dset = numpy.empty(lencat, dtype=[('Position',('f8', 3)),
-																	('Mass', 'f8'),
-																	('r', 'f8'),
-																	('t', 'f8'),
-																	('p', 'f8'),
-																	('Velocity', ('f8', 3)),
-																	('vr', 'f8'),
-																	('vp', 'f8'),
-																	('vt', 'f8') ,
-																	('aH', 'f8'),
-																	('pixel_bin','f8'),
-																	('pixel_index','f8')])
+dset = numpy.empty(lencat, dtype=[('Position',
+				   ('f8', 3)),
+				  ('Mass', 'f8'),
+				  ('r', 'f8'),
+				  ('t', 'f8'),
+				  ('p', 'f8'),
+				  ('Velocity', ('f8', 3)),
+				  ('vr', 'f8'),
+				  ('vp', 'f8'),
+				  ('vt', 'f8') ,
+				  ('aH', 'f8'),
+				  ('pixel_bin','f8'),
+				  ('pixel_index','f8')])
 r_ = np.sqrt(x**2 + y**2 + z**2)
 p_ = np.arctan(y/(x+1e-13))
 t_ = np.arccos(z/(r_+1e-13))
