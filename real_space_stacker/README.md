@@ -15,3 +15,5 @@ Moving lens effect is analogous to (non-linera) Sachs-Wolfe effect, and has the 
 where <img src="http://latex.codecogs.com/svg.latex?\chi" border="0"/> is the comoving distance and <img src="http://latex.codecogs.com/svg.latex?\Theta=\Delta\,T/T" border="0"/> is the fractional CMB temperature fluctuation and that 
 
 <img src="http://latex.codecogs.com/svg.latex?{\dot{\Phi}(\chi\hat{\mathbf{n}})}=\mathbf{v}\cdot\nabla\Phi\,." border="0"/>
+
+Assuming spherical symmetry, we can write <img src="http://latex.codecogs.com/svg.latex?\boldsymbol{\nabla}\Phi=\rhat\!~\Phi'" border="0"/> (where <img src="http://latex.codecogs.com/svg.latex?\Phi'=\partial\Phi/\partial r" border="0"/>).
