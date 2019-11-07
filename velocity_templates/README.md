@@ -2,7 +2,7 @@
 
 contact: selim.hotinli14@imperial.ac.uk
 
-note: major update early Nov.
+note: major update will follow early/mid Nov.
 
 # External reconstruction of the 3D velocity (templates) 
 
