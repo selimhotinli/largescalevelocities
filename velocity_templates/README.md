@@ -8,6 +8,4 @@ note: major update early Nov.
 
 External velocity templates are very valuable for high-signal-to-noise detection of the moving lens effect as well as the kinetic SZ. The goal of this pipeline is reconstructing 3D-velocities from halo-catalogues **and** make redshift-binned healpix maps of these. Code will see update ASAP. 
 
-The continuity equation is
-
-<img src="http://latex.codecogs.com/svg.latex?\dot{\delta}+\nabla\cdot[(1+\delta)\vec{v}]=-3\dot{\Psi}" border="0"/>
+At late times and on large scales we relate <img src="http://latex.codecogs.com/svg.latex?\dot{\delta}=-\nabla\cdot\mathbf{v}" border="0"/>
