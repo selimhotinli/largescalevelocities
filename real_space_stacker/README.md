@@ -22,13 +22,15 @@ Assuming spherical symmetry, we can write
 
 where <img src="http://latex.codecogs.com/svg.latex?\Phi'=\partial\Phi/\partial\,r" border="0"/>. Using an NFW profile for the halos, i.e.
 
-<img src="http://latex.codecogs.com/svg.latex?\Phi(r)=-4\pi G\rho_sr_s^2\frac{\ln(1+x)}{x}\,," border="0"/>,
+<img src="http://latex.codecogs.com/svg.latex?\Phi(r)=-4\pi\,G\rho_s\,r_s^2\frac{\ln(1+x)}{x}\,," border="0"/>,
 
 We approximate the functional form of the gravitational potential by using the mass profile for a spherically symmetric halo (NFW) with a single parameter that is the mass of the halo. We fix the virial radius as 
 
-<img src="http://latex.codecogs.com/svg.latex?r_\mathrm{vir}:=\left(\frac{G M_\odot m}{100 H^2}\right)^{1/3}\," border="0"/>
+<img src="http://latex.codecogs.com/svg.latex?r_\mathrm{vir}:=\left(\frac{G\,M_\odot\,m}{100H^2}\right)^{1/3}\," border="0"/>
 
-where we will use the parameter <img src="http://latex.codecogs.com/svg.latex?m" border="0"/> to refer to halo mass in Solar mass units, i.e. <img src="http://latex.codecogs.com/svg.latex?M_\odot\simeq1.989\times 10^{30}\mathrm{kg}" border="0"/>. Another useful quantity is the clustering parameter, 
+where we will use the parameter <img src="http://latex.codecogs.com/svg.latex?m" border="0"/> to refer to halo mass in Solar mass units, i.e. <img src="http://latex.codecogs.com/svg.latex?M_\odot\simeq1.989\times 10^{30}\mathrm{kg}" border="0"/>. 
+
+Another useful quantity is the clustering parameter, 
 
 <img src="http://latex.codecogs.com/svg.latex?c=A\left(\frac{m}{2\times10^{12}h^{-1}}\right)^\alpha(1+z)^\beta\,," border="0"/>
 
