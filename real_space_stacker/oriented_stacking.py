@@ -1,3 +1,6 @@
+#### produces code to be updated and under development
+#### contact: selim.hotinli14@imperial.ac.uk
+#### produce stacked imagines of CMB around halos
 import sys, platform, os
 from sys import argv
 import numpy as np
