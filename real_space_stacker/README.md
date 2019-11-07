@@ -66,6 +66,10 @@ and the radial dependence is found to be
 
 ## Real-space stacking and the detection SNR
 
-Following from our calculations above, we can note that the moving lens effect is a very particular pattern (1) aligned with the transverse velocity of the halos. An efficient method to bring the moving lens signal to surface and which stacks the CMB patches benefits from well-approximating the velocities the large scale velocities. Getting a SNR will depend on the correlation coefficient between the template velocities that will be used in the moving lens detection/reconstruction. The pipeline (*under development*) related to producing 3D velocity fields from halo catalogues serves this purpose.
+Following from our calculations above, we can note that the moving lens effect is a very particular pattern (1) aligned with the transverse velocity of the halos. An efficient method to bring the moving lens signal to surface and which stacks the CMB patches benefits from well-approximating the velocities the large scale velocities. Getting a SNR will depend on the correlation coefficient between the template velocities that will be used in the moving lens detection/reconstruction. 
 
-In fact, we can calculate an estimate for the moving-lens signal from stacking patches as follows. 
+The pipeline (*under development*) related to producing 3D velocity fields from halo catalogues serves this purpose. 
+
+`The python script here` serves to value of the CMB on a grid centered at a halo in the sky, aligned with the tranvserve velocity.
+
+
