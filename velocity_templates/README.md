@@ -1,4 +1,4 @@
-## 3D-velocity template maker
+## 3D-velocity template maker  # (under development)
 
 contact: selim.hotinli14@imperial.ac.uk
 
