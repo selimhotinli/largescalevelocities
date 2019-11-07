@@ -6,4 +6,6 @@ A gravitational potential moving with velocity <img src="http://latex.codecogs.c
 
 where <img src="http://latex.codecogs.com/svg.latex?\Theta = \Delta\ T / T" border="0"/> is the fractional CMB temperature fluctuation, <img src="http://latex.codecogs.com/svg.latex?\chi" border="0"/> is the conformal distance, and  <img src="http://latex.codecogs.com/svg.latex?\boldsymbol{\beta}" border="0"/> is the deflection angle as seen by the lens (see e.g. arXiv:1812.03167).
 
+On small scales, this moving lens signal is a collection of remote dipolar fluctuations centered on galaxies, aligned with the direction of their transverse velocities. The effect will be detected by the Simons Observatory (SO) to high significance.
 
+Moving lens effect is analogous to (non-linera) Sachs-Wolfe effect, and has the form <img src="http://latex.codecogs.com/svg.latex?{ \Theta(\hat{\mathbf{n}})=a/c^2\int\textnormal{d}\chi\,\dot{\Phi}(\chi\hat{\mathbf{n}})}" border="0"/>, where <img src="http://latex.codecogs.com/svg.latex?\chi" border="0"/> is the comoving distance and <img src="http://latex.codecogs.com/svg.latex?\Theta=\Delta T/T" border="0"/> is the fractional CMB temperature fluctuation and that <img src="http://latex.codecogs.com/svg.latex?{\dot{\Phi}(\chi\hat{\mathbf{n}})}=\mathbf{v}\cdot\nambla\Phi" border="0"/>.
