@@ -51,7 +51,7 @@ for bin_num in range(len(chi_bins)-1) :
 	cutCat = np.arange(0,len(catalog))
 	cutCat = cutCat[(bin_lower_chi<chi_) & (chi_<bin_upper_chi)]		
   NSIDE = 4096
-	NPIX = 12*NSIDE**2
+  NPIX = 12*NSIDE**2
 	rho_m_0 = 2.775e11*omegam*h**2 # Msun/Mpc^3
 	################## halo locations in Mpc (comoving) coordinates ##################
 	x = reduced_catalog[:,0]
