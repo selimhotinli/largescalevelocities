@@ -34,13 +34,15 @@ Another useful quantity is the clustering parameter,
 
 <img src="http://latex.codecogs.com/svg.latex?c=A\left(\frac{m}{2\times10^{12}h^{-1}}\right)^\alpha(1+z)^\beta\,," border="0"/>
 
-which relates the scale radius, <img src="http://latex.codecogs.com/svg.latex?r_s" border="0"/>, to the virial radius of the halo, via <img src="http://latex.codecogs.com/svg.latex?c=r_\mathrm{vir}/r_s" border="0"/>. For the model parameters <img src="http://latex.codecogs.com/svg.latex?\{A,\alpha,\beta\}" border="0"/>, we use appropriate values from literature, <img src="http://latex.codecogs.com/svg.latex?\{7.85,-0.081,-0.71\}" border="0"/>. We use the NFW profile for the density of the halo,
+which relates the scale radius, <img src="http://latex.codecogs.com/svg.latex?r_s" border="0"/>, to the virial radius of the halo, via <img src="http://latex.codecogs.com/svg.latex?c=r_\mathrm{vir}/r_s" border="0"/>. For the model parameters <img src="http://latex.codecogs.com/svg.latex?\{A,\alpha,\beta\}" border="0"/>, we use appropriate values from literature, <img src="http://latex.codecogs.com/svg.latex?\{7.85,-0.081,-0.71\}" border="0"/>. 
+
+We use the NFW profile for the density of the halo,
 
 <img src="http://latex.codecogs.com/svg.latex?\rho(r)=\frac{\rho_s}{x(1+x)^2}\,," border="0"/> 
 
 and 
 
-<img src="http://latex.codecogs.com/svg.latex?\Phi(r)=-4\pi G\rho_sr_s^2\frac{\ln(1+x)}{x}\,," border="0"/>
+<img src="http://latex.codecogs.com/svg.latex?\Phi(r)=-4\pi\,G\rho_s\,r_s^2\frac{\ln(1+x)}{x}\,," border="0"/>
 
 where <img src="http://latex.codecogs.com/svg.latex?x=r/r_s" border="0"/>, and we can use the equations above to get 
 
@@ -52,7 +54,7 @@ The partial derivative of the gravitational potential with respect to r can then
 
 such that the moving lens signal from a halo takes the form <img src="http://latex.codecogs.com/svg.latex?S=A\tau(x)" border="0"/> where 
 
-<img src="http://latex.codecogs.com/svg.latex?A:=-\frac{v}{c}a\frac{8\pi G\rho_sr_s^2}{c^2}\cos\theta" border="0"/>
+<img src="http://latex.codecogs.com/svg.latex?A:=-\frac{v}{c}a\frac{8\pi\,G\rho_sr_s^2}{c^2}\cos\theta" border="0"/>
 
 and the radial dependence is found to be 
 
