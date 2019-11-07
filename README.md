@@ -10,7 +10,7 @@ This rep includes various tools and pipelines for reconstruction large-scale vel
 
 tools include: (work on progress)
 
-1) 3D velocity reconstruction from halo catalogs
+1) **3D velocity** template reconstruction from halo catalogs
 - uses galaxy catalog to compute 3D overdensity field. 
 - uses the 3D overdensity field to compute 3D velocity 3-vector. 
 - makes *redshift-binned healpix maps* out of 3D velocities
@@ -46,7 +46,7 @@ Requires:
 
 see also related work by Siavash Yasini https://github.com/syasini/AstroPaint
 
-4) spherical harmonic reconstruction of the transverse velocities:  https://github.com/jbmertens/websky_post (work on progress)
+4) **spherical harmonic reconstruction** of the transverse velocities:  https://github.com/jbmertens/websky_post (work on progress)
 
 Requires: 
 `healpy`
