@@ -1,8 +1,8 @@
-## 3D-velocity template maker  # (under development)
+## 3D-velocity template maker 
 
 contact: selim.hotinli14@imperial.ac.uk
 
-note: major update will follow early/mid Nov.
+note: under development, major update will follow early/mid Nov.
 
 # External reconstruction of the 3D velocity (templates) 
 
